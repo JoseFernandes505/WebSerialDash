@@ -21,32 +21,31 @@
 		});		
 		$.get("rssScraper.php?details=pact", function(data){
 			$("#pactUpdate").html(data);
+		});
+		$.get("rssScraper.php?details=gods", function(data){
+			$("#godsUpdate").html(data);
 		});		
 		
 		$(document).ready(function(){
 			$("#wardInfo").hover(function(){
-				$("#content").css("background-image", "url(res/victoria.jpg)");
-				$("#content").css("background-size", "cover");
-				$("#content").css("background-position", "center");
+				$("#content").css("background-image", "url(res/wb_banner.jpg)");
 			},
 			function(){
-				$("#content").css("background", "black");
+				$("#content").css("background-image", "url(res/bg.jpg)");
 			});
+			
 			$("#practicalInfo").hover(function(){
 				$("#content").css("background-image", "url(res/catherine.jpg)");
-				$("#content").css("background-size", "cover");
-				$("#content").css("background-position", "center");
 			},
 			function(){
-				$("#content").css("background", "black");
+				$("#content").css("background-image", "url(res/bg.jpg)");
 			});
+			
 			$("#pactInfo").hover(function(){
 				$("#content").css("background-image", "url(res/barbatorem.jpg)");
-				$("#content").css("background-size", "cover");
-				$("#content").css("background-position", "center");
 			},
 			function(){
-				$("#content").css("background", "black");
+				$("#content").css("background-image", "url(res/bg.jpg)");
 			});
 			
 			//The onclick functions for the navbar
@@ -77,6 +76,12 @@
 					$("#recent").html(data);
 				});
 			});
+			$("#godsNav").on("click", function(event){
+				event.preventDefault();
+				$.get("rssScraper.php?serial=gods", function(data){
+					$("#recent").html(data);
+				});
+			});
 			$(".navbar-header a").on("click", function(){
 				$("#recent").css("display", "none");
 			});
@@ -90,7 +95,8 @@
 			height:100%;
 			width:100%;
 			font-family: 'Federo';
-			background-color: black;
+			background-image: url("res/bg.jpg");
+			background-attachment: fixed;
 		}
 		
 		.navbar{
@@ -102,6 +108,7 @@
 			padding-top: 20px;
 			background-size:cover;
 			background-position:center;
+			background-attachment: fixed;
 			width:100%;
 			height:100%;
 		}
@@ -111,6 +118,8 @@
 			background: rgba(96,96,96,0.8);
 			border-radius: 10px;
 			border: 2px solid black;
+			margin-bottom: 40px;
+			padding: 5px;
 		}
 		
 		.center{
@@ -139,10 +148,6 @@
 		
 		.description{
 			font-style: italic;
-		}
-		
-		.about{
-			margin:200px 0 0 0;
 		}
 		
 		a{
@@ -180,6 +185,7 @@
 				<li id="wardNav"><a href=""><span class="glyphicon glyphicon-record"></span> Ward</a></li>
 				<li id="practicalNav"><a href=""><span class="glyphicon glyphicon-tower"></span> Practical Guide</a></li>
 				<li id="pactNav"><a href=""><span class="glyphicon glyphicon-tint"></span> Pact</a></li>
+				<li id="godsNav"><a href=""><span class="glyphicon glyphicon-education"></span> The Gods Are Bastards</a></li>
 			  </ul>
 			
 			</div>
@@ -191,7 +197,7 @@
 		
 		<div class="container" id="content">		
 			<div id="info">
-				<div class="row" id="descriptions">
+				<div class="row">
 					<div class="col-md-4 box">
 						<div class="info center" id="wardInfo">
 							<h3 class="serialTitle">Ward</h3>
@@ -214,6 +220,17 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="info center">
+							<h3 class="serialTitle">The Gods Are Bastards</h3>
+							<h4 class="description">The Times Are Changing</h4>
+							Last update: <div id="godsUpdate"></div>
+						</div>
+					</div>	
+				</div>
+				
 
 				<div class="col-md-4 col-md-offset-4">
 					<div class="info center about">
